@@ -1,0 +1,38 @@
+{
+    "quizName": "Multiple Choice Synth Quiz",
+    "questions":[
+        {
+            "id": "radioactive",
+            "question": "Which Eurorack module series includes designs that incorporate literal radioactive material, worms cultured in petri dishes, or dirt as part of the circuit behavior?",
+            "options": [
+                "Gieskes undefined series",
+                "ERD (Electro-Retina Display / Extreme Response Device) series",
+                "Folktek Matter / Mesmer series",
+                "Ieaskul F. Mobenthey dirty lineup"
+            ],
+            "correctIndex": "1"
+        },
+        {
+            "id": "damage",
+            "question": "Which Eurorack module includes circuitry designed to potentially damage or destroy other modules in your system as a core feature?",
+            "options": [
+                "Metasonix Scrotum Smasher",
+                "Wildfire Laboratories Commodity Fetishism",
+                "Gieskes Voltage Controlled Water Pump",
+                "ERD Worm"
+            ],
+            "correctIndex": "1"
+        },
+        {
+            "id": "destruction",
+            "question": "What does Recovery Effects' Sound Destruction Device do?",
+            "options": [
+                "Its CV inputs can accept bipolar ±10V signals that exceed internal op-amp rails, risking blowback into the sending module",
+                "The variable resistor network can create near-short conditions on the input path when fully destroyed, potentially overloading envelope followers or comparators",
+                "Twin-T filter resonance peaks can generate massive voltage spikes (>20Vpp) when overdriven, frying downstream VCAs or filters",
+                "None of the above — it's audio-path only and safe; the destruction is purely sonic, not electrical"
+            ],
+            "correctIndex": "0"
+        }
+    ]
+}

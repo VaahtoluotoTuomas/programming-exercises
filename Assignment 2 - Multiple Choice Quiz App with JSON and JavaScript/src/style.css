@@ -1,0 +1,45 @@
+h1{
+    padding-left: 0.5em;
+}
+
+h2 {
+    padding-left: 0.5em;
+}
+
+button {
+    margin-left: 1em;
+    padding: 10px 20px;
+    font-family: 16px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+button:active {
+    background-color: #004085;
+    transform: scale(0.96);
+}
+
+#restart {
+    background-color: #6c757d;
+    margin-left: 10px;
+}
+
+#restart:hover {
+    background-color: #5a6268;
+}
+
+.question-container {
+    margin: 1em;
+    padding: 1.3em;
+    padding-top: 0.1em;
+    max-width: 50em;
+    outline: 1px solid black;
+}

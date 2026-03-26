@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Function Calculator and Plotter</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <style>
+
+      body {
+        font-family: sans-serif;
+        margin: 20px;
+      }
+
+      .form-group {
+        margin-bottom: 10px;
+      }
+
+      label {
+        display: inline-block;
+        width: 150px;
+      }
+
+      .graphics-container {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+        gap: 20px;
+      }
+
+      .canvas-wrapper, .chart-wrapper {
+        flex: 1;
+        border: 1px solid #ccc;
+        padding: 10px;
+        text-align: center;
+      }
+
+      #text-output {
+        margin-top: 20px;
+        padding: 10px;
+        background-color: #f9f9f9;
+        border: 1px solid #ddd;
+        min-height: 100px;
+        font-family: monospace;
+        white-space: pre-wrap;
+      }
+
+      canvas {
+        background-color: #fff;
+      }
+
+    </style>
+
+  </head>
+  <body>
+
+    <h1>Function Calculator and Plotter</h1>
+
+    <div id="calculator-form">
+      <div class="form-group">
+        <label for="funcInput">Function f(x):</label>
+        <input type="text" id="funcInput" placeholder="x*x or sin(x)">
+      </div>
+      <div class="form-group">
+        <label for="xStart">Start of x:</label>
+        <input type="number" id="xStart" value="0">
+      </div>
+      <div class="form-group">
+        <label for="xEnd">End of x:</label>
+        <input type="number" id="xEnd" value="10">
+      </div>
+      <div class="form-group">
+        <label for="xStep">x step:</label>
+        <input type="number" id="xStep" value="1">
+      </div>
+      <div class="form-group">
+        <label for="yScale">y scale factor:</label>
+        <input type="number" id="yScale" value="1">
+      </div>
+      <button id="calcBtn">Calculate</button>
+      <div id="error-message" style="color: red; margin-top: 10px;"></div>
+    </div>
+
+    <div class="graphics-container">
+      <div class="canvas-wrapper">
+        <h3>Canvas</h3>
+        <canvas id="myCanvas" width="400" height="400"></canvas>
+      </div>
+      <div class="chart-wrapper">
+        <h3>Chart.js</h3>
+        <canvas id="myChart" width="400" height="400"></canvas>
+      </div>
+    </div>
+
+    <div id="text-output">Calculated values will appear here...</div>
+
+    <script src="/src/app.js"></script>
+
+  </body>
+</html>

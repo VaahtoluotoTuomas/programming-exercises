@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Assignment 1</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    .error {color: red; font-weight: bold;}
+  </style>
+</head>
+  <body>
+    <form id="userForm">
+        <div>
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name" size="60" 
+              placeholder="Write your name here" maxlength="80" 
+              autofocus required>
+        </div>
+
+        <div>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" size="40" required
+              minlength="8" maxlength="20"
+              pattern="[a-zA-Z0-9_,.:;?!\-]+"
+              title="Password field accepts 8-20 characters: a-z, A-Z, 0-9 and 
+                following punctuation characters _,.-:;?!">
+        </div>
+      
+        <div>
+            <label for="password2">Password again:</label>
+            <input type="password" id="password2" name="password2" size="40" required
+              minlength="8" maxlength="20" 
+              pattern="[a-zA-Z0-9_,.:;?!\-]+" 
+              title="Must match the password above">
+        </div>
+
+        <div>Gender:
+            <input type="radio" id="male" name="gender" value="male" required>
+            <label for="male">Male</label>
+            <input type="radio" id="female" name="gender" value="female" required>
+            <label for="female">Female</label>
+            <input type="radio" id="other" name="gender" value="other" required>
+            <label for="other">Other</label>
+        </div>
+        
+        <div>Hobbies:
+            <input type="checkbox" id="games" name="hobbies" value="games">
+            <label for="games">Games</label>
+            <input type="checkbox" id="music" name="hobbies" value="music">
+            <label for="music">Music</label>
+            <input type="checkbox" id="sports" name="hobbies" value="sports">
+            <label for="sports">Sports</label>
+            <input type="checkbox" id="TV" name="hobbies" value="TV">
+            <label for="TV">TV</label>
+        </div>
+
+        <div>
+            <label for="birth_date">Birth Date:</label>
+            <input type="date" id="birth_date" name="birth_date">
+        </div>
+
+        <div>
+          <label for="height_range">Height (from 40cm to 250cm)</label>
+          <input type="range" id="height_range" name="height_range" min="40" max="250" value="170">
+          <input type="number" id="height_number" min="40" max="250" value="170"
+            aria-label="Height as a number">
+          <span>cm</span>
+        </div>
+
+        <div>
+          <label for="favorite_color">Favorite color:</label>
+          <input type="color" id="favorite_color" name="favorite_color">
+        </div>
+
+        <div>
+          <label for="home_country">Home country:</label>
+          <select id="home_country" name="home_country">
+            <option value="finland" selected>Finland</option>
+            <option value="norway">Norway</option>
+            <option value="sweden">Sweden</option>
+            <option value="denmark">Denmark</option>
+            <option value="estonia">Estonia</option>
+            <option value="latvia">Latvia</option>
+            <option value="lithuania">Lithuania</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="profession">Profession:</label>
+          <input list="professions" name="profession" id="profession">
+
+          <datalist id="professions">
+            <option value="Teacher"></option>
+            <option value="Nurse"></option>
+            <option value="plumber"></option>
+            <option value="bureaucrat"></option>
+            <option value="M4573rH4X0r"></option>              
+          </datalist>
+        </div>
+
+        <div>
+          <label for="message">Message:</label>
+          <textarea id="message" name="message" rows="6" cols="60" required 
+            maxlength="1000" placeholder="Write here..."></textarea>
+        </div>
+            
+        <div>
+          <button>Send</button>
+        </div>
+
+        <div>
+          <output id="result"></output>
+        </div>
+
+    </form>
+    <script>
+      const resultOutput = document.getElementById('result');
+      const form = document.getElementById('userForm');
+
+      const nameInput = document.getElementById('name');
+      const passwordInput = document.getElementById('password');
+      const passwordConfirmInput = document.getElementById('password2');
+      const bdayInput = document.getElementById('birth_date');
+      const favColorInput = document.getElementById('favorite_color');
+      const homeCountryInput = document.getElementById('home_country');
+      const professionInput = document.getElementById('profession');
+      const messageInput = document.getElementById('message');
+      const rangeInput = document.getElementById('height_range');
+      const numberInput = document.getElementById('height_number');
+
+      rangeInput.addEventListener('input', function() {
+        numberInput.value = rangeInput.value;
+      });
+      numberInput.addEventListener('input', function() {
+        rangeInput.value = numberInput.value; 
+      });
+
+      form.addEventListener('submit', function(event) {
+
+        event.preventDefault();
+        resultOutput.innerHTML = "";
+
+        if (passwordInput.value !== passwordConfirmInput.value) {
+          resultOutput.innerHTML = '<p class="error">Error: Salasanat eivät vastaa toisiaan!</p>';
+          passwordConfirmInput.focus();
+          return;
+        }
+
+        const genderInput = document.querySelector('input[name="gender"]:checked');
+        if (!genderInput) {
+          resultOutput.innerHTML = '<p class="error">Error: Sukupuolta ei ole valittu!</p>';
+          return;
+        }
+
+        const hobbiesInput = Array.from(document.querySelectorAll('input[name="hobbies"]:checked')).map(el => el.value);
+        const hobbiesInputText = hobbiesInput.length > 0 
+          ? hobbiesInput.join(", ")
+          : "No hobbies";
+
+        resultOutput.innerHTML = `
+        <h3>Form data:</h3>
+        <div><strong>Name:</strong> ${nameInput.value}</div>
+        <div><strong>Password:</strong> ${passwordInput.value}</div>
+        <div><strong>Password again:</strong> ${passwordConfirmInput.value}</div>
+        <div><strong>Gender:</strong> ${genderInput.value}</div>
+        <div><strong>Hobbies:</strong> ${hobbiesInputText}</div>
+        <div><strong>Birth Date:</strong> ${bdayInput.value}</div>
+        <div><strong>Height:</strong> ${numberInput.value} cm</div>
+        <div><strong>Favorite color:</strong> ${favColorInput.value}</div>
+        <div><strong>Home country:</strong> ${homeCountryInput.value}</div>
+        <div><strong>Profession:</strong> ${professionInput.value}</div>
+        <div><strong>Message:</strong> ${messageInput.value}</div>
+        `;
+      });
+
+    </script>
+  </body>
+</html>
