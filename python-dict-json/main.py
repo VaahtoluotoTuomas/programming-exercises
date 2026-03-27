@@ -4,8 +4,8 @@ import os
 FILE_NAME = 'dictionary.json'
 
 DEFAULT_DICTIONARY = {
-    "hello": "hei",
-    "world": "maailma"
+    "cat": "kissa",
+    "dog": "koira"
 }
 
 def load_dictionary():
@@ -36,12 +36,23 @@ def main():
     my_dict = load_dictionary()
 
     while True:
-        user_input = input("\nEnter a word to search (or press Enter to exit): ")
+        user_input = input("\nEnter a word to search (or press Enter to exit): ").strip().lower()
 
-        if user_input == "";
+        if user_input == "":
             break
 
-                # Hae sanaa sanakirjasta ja toimi tehtävänannon mukaisesti
+        if user_input in my_dict:
+            print(f"Translation: {my_dict[user_input]}")
+        else:
+            print("Word not found. Please input a definition.")
+
+            new_definition = input("Definition: ").strip().lower()
+
+            if new_definition !="":
+                my_dict[user_input] = new_definition
+                print(f"Word '{user_input}' added to the dictionary!")
+            else:
+                print("No definition provided. Word was not added.")
 
     save_dictionary(my_dict)
     print("Goodbye!")
