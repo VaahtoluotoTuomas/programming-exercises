@@ -20,7 +20,7 @@ def load_dictionary():
         print("Error: The dictionary file is corrupted. Loading default dictionary.")
         return DEFAULT_DICTIONARY.copy()
     except Exception as e:
-        print(f"An unexpected error occured while reading: {e}")
+        print(f"An unexpected error occurred while reading: {e}")
         return DEFAULT_DICTIONARY.copy()
     
 def save_dictionary(dictionary):
@@ -44,11 +44,11 @@ def main():
         if user_input in my_dict:
             print(f"Translation: {my_dict[user_input]}")
         else:
-            print("Word not found. Please input a definition.")
+            print("Word not found. Please input a definition")
 
             new_definition = input("Definition: ").strip().lower()
 
-            if new_definition !="":
+            if new_definition != "":
                 my_dict[user_input] = new_definition
                 print(f"Word '{user_input}' added to the dictionary!")
             else:
